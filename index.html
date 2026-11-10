@@ -1,1 +1,391 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff7f5">
+  <title>إلى وتين، توتي حبيبتي ♡</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #492d3d;
+      --muted: #876d7c;
+      --pink: #e87991;
+      --deep-pink: #cc5477;
+      --cream: #fffaf7;
+    }
 
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 18%, #ffe6eb 0, transparent 31%),
+        radial-gradient(ellipse at 88% 82%, #f9e6f0 0, transparent 34%),
+        linear-gradient(145deg, #fffaf7, #fff3f4);
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    .page {
+      position: relative;
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      padding: 28px 18px;
+      isolation: isolate;
+    }
+
+    .glow {
+      position: fixed;
+      z-index: -1;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: #f7c7d4;
+      filter: blur(100px);
+      opacity: .38;
+      pointer-events: none;
+    }
+    .glow-one { top: -150px; right: -80px; }
+    .glow-two { bottom: -180px; left: -90px; background: #dfc5df; }
+
+    .card {
+      width: min(100%, 560px);
+      padding: clamp(30px, 7vw, 58px);
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 30px;
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 24px 80px rgba(107, 54, 80, .12);
+      text-align: center;
+      backdrop-filter: blur(16px);
+      animation: arrive .75s ease both;
+    }
+
+    .seal {
+      display: grid;
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 20px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(145deg, #f3a5b6, #dd6d8b);
+      box-shadow: 0 10px 24px rgba(221,109,139,.28);
+      font-size: 32px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--deep-pink);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .2em;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(31px, 8vw, 45px);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .intro {
+      margin: 12px 0 28px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .open-button, .surprise-button, .copy-button {
+      border: 0;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(135deg, #e78ba1, #d65f80);
+      font-weight: 700;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .open-button, .surprise-button, .copy-button { padding: 13px 22px; }
+
+    .open-button:hover, .surprise-button:hover, .copy-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(214,95,128,.25);
+    }
+
+    .message-card { width: min(100%, 760px); }
+    .message-card h1 { font-size: clamp(34px, 8vw, 54px); }
+    .message-card .seal { margin-bottom: 15px; }
+    .love-copy {
+      max-width: 610px;
+      margin: 20px auto 0;
+      color: #684b5b;
+      font-size: clamp(16px, 3.6vw, 19px);
+      line-height: 2.05;
+    }
+    .love-copy p { margin: 12px 0; }
+    .love-copy h2 {
+      margin: 30px 0 8px;
+      color: var(--deep-pink);
+      font-size: 21px;
+    }
+    .divider {
+      width: 54px;
+      height: 1px;
+      margin: 22px auto;
+      background: #eac5d0;
+    }
+    .memory-list {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+      padding: 0;
+      list-style: none;
+      text-align: right;
+    }
+    .memory-list li {
+      padding: 13px 16px;
+      border: 1px solid #f4e3e8;
+      border-radius: 15px;
+      background: rgba(255, 247, 249, .85);
+    }
+    .date-note {
+      display: inline-block;
+      margin: 10px 0;
+      padding: 8px 15px;
+      border-radius: 999px;
+      color: #a44f6b;
+      background: #fff0f3;
+      font-weight: 700;
+    }
+    .english {
+      direction: ltr;
+      color: #876d7c;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.9;
+    }
+    .surprise-button {
+      margin-top: 21px;
+      padding: 13px 22px;
+    }
+    .surprise {
+      min-height: 34px;
+      margin: 15px 0 0;
+      color: var(--deep-pink);
+      font-weight: 600;
+      line-height: 1.8;
+    }
+    .signature {
+      margin: 22px 0 0;
+      color: #b1788b;
+      font-size: 14px;
+    }
+    .share-box {
+      margin: 30px auto 0;
+      padding: 20px;
+      border: 1px solid #f1dfe5;
+      border-radius: 20px;
+      background: rgba(255, 250, 251, .85);
+    }
+    .share-box h2 { margin: 0; font-size: 20px; }
+    .share-box p { color: var(--muted); line-height: 1.8; }
+    .qr-code {
+      display: block;
+      width: 190px;
+      height: 190px;
+      margin: 15px auto;
+      padding: 8px;
+      border: 1px solid #f1dfe5;
+      border-radius: 12px;
+      background: white;
+    }
+    .share-link {
+      display: block;
+      width: 100%;
+      margin: 12px 0;
+      padding: 10px;
+      border: 1px solid #ead8df;
+      border-radius: 10px;
+      color: var(--ink);
+      background: white;
+      direction: ltr;
+      text-align: left;
+    }
+    .share-status {
+      min-height: 24px;
+      margin: 8px 0 0 !important;
+      color: var(--deep-pink) !important;
+      font-size: 14px;
+    }
+
+    [hidden] { display: none !important; }
+
+    .heart {
+      position: fixed;
+      z-index: -1;
+      bottom: -30px;
+      color: #e87991;
+      opacity: 0;
+      pointer-events: none;
+      animation: float-up 6s ease-in forwards;
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(14px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes float-up {
+      10% { opacity: .55; }
+      100% { opacity: 0; transform: translateY(-110vh) rotate(25deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <span class="glow glow-one" aria-hidden="true"></span>
+    <span class="glow glow-two" aria-hidden="true"></span>
+
+    <section class="card" id="cover-card" aria-labelledby="cover-title">
+      <div class="seal" aria-hidden="true">♡</div>
+      <p class="eyebrow">11 · 11 · لوتين حبيبتي</p>
+      <h1 id="cover-title">يا توتي، دي حكايتنا الحلوة ♡</h1>
+      <p class="intro">في يوم مميز زيك، حبيت أفكّرك إنك أجمل حاجة حصلتلي…<br>جواكي رسالة طويلة من قلبي ليكي ✨</p>
+      <button class="open-button" id="open-button" type="button">افتحي رسالتك يا توتي ♡</button>
+    </section>
+
+    <section class="card message-card" id="love-card" aria-labelledby="love-title" hidden>
+      <div class="seal" aria-hidden="true">♥</div>
+      <p class="eyebrow">11 · 11 · JUST FOR YOU</p>
+      <h1 id="love-title">وتين… يا توتي، بحبك أوي ♡</h1>
+      <span class="date-note">رسالة حب مخصوصة ليكي في 11/11 ✨</span>
+      <div class="love-copy">
+        <p>يا وتين، يا حبيبتي وتوتي… يمكن أقولك بحبك كتير، بس الحقيقة إن الكلمة دي لسه صغيرة على كل اللي جوايا ليكي. إنتِ مش بس حبيبتي؛ إنتِ راحتي، وضحكتي، وأجمل تفصيلة في أيامي.</p>
+        <p>من ساعة ما بقيتي جزء من حياتي، حاجات كتير بقت أحنّ وأجمل. اليوم العادي بقى مستني صوتك، واللحظة الحلوة بقت أحلى لما أشاركها معاكي. وحتى الأيام التقيلة، فكرة إنك موجودة فيها بتخلّيها أهون.</p>
+        <div class="divider" aria-hidden="true"></div>
+        <h2>ذكرياتنا الحلوة… اللي عايشة جوا قلبي</h2>
+        <p>كل ضحكة طلعت من قلبنا، وكل كلام طول من غير ما نحس بالوقت، وكل مرة طمّنا فيها على بعض… الحاجات دي عندي مش تفاصيل صغيرة. دي لحظات غالية بتفكرني قد إيه أنا محظوظ إنك في حياتي.</p>
+        <ul class="memory-list">
+          <li>♡ ضحكتك اللي بتخلّي أي لحظة أحلى، حتى لو كان يومي طويل.</li>
+          <li>♡ حكاوينا وكلامنا اللي دايمًا نفسي الوقت فيه يقف شوية.</li>
+          <li>♡ كل مرة كنتِ فيها جنبي، وكل إحساس حلو خلّيتيه يكبر جوايا.</li>
+          <li>♡ تفاصيلك الصغيرة اللي يمكن تعدّي عليكي، بس أنا بحبها وبفتكرها.</li>
+        </ul>
+        <p>يمكن مش فاكر أرتّب كل ذكرى في كلام، بس قلبي حافظ إحساس كل لحظة حلوة بينا. ونفسي نفضل نزوّد الحكاية دي بضحك ومواقف وصور وذكريات كتير… ذكرى ورا ذكرى، وإيدك في إيدي.</p>
+        <h2>ووعد مني ليكي يا توتي</h2>
+        <p>أفضّل أختارك، وأسمعك، وأطمن عليكي، وأحاول كل يوم أخليكي عارفة إنك غالية ومحبوبة. أكون ضهرك في الحلو والصعب، وأفرح لفرحتك كأنها فرحتي، وأفضل أقولك إن وجودك في حياتي نعمة بحمد ربنا عليها.</p>
+        <p>في 11/11، وكل يوم بعده، عايزك تفتكري إن في قلب بيحبك بجد، وبيشوفك أجمل وأحنّ وأقرب إنسانة ليه. بحبك يا وتين، يا توتي، يا أجمل نصيب وأحلى حكاية. بحبك قد كل الكلام اللي اتقال، وقد كل الكلام اللي لسه هقولهولك، وأكتر بكتير. ♥</p>
+        <div class="divider" aria-hidden="true"></div>
+        <p class="english" lang="en">You make ordinary days feel like our favorite memories. I’m grateful for every laugh, every little moment, and every tomorrow I get to imagine with you.</p>
+        <p class="english" lang="en">I choose you, Wateen — today, on 11/11, and every day after. I love you more than words could ever say. ♡</p>
+      </div>
+      <button class="surprise-button" id="surprise-button" type="button">اضغطي هنا لمفاجأة صغيرة ✨</button>
+      <p class="surprise" id="surprise-message" aria-live="polite"></p>
+      <p class="signature">من قلبي لقلبك يا توتي… بحبك أوي ♡</p>
+      <section class="share-box" aria-labelledby="share-title">
+        <h2 id="share-title">خلي الرسالة توصلك في أي وقت ♡</h2>
+        <p id="share-help">لما ترفعي الصفحة على الإنترنت، هيظهر هنا QR والرابط عشان تبعتيهم لتوتي.</p>
+        <img class="qr-code" id="qr-code" alt="QR code لفتح رسالة وتين" hidden>
+        <input class="share-link" id="share-link" type="text" aria-label="رابط الرسالة" readonly hidden>
+        <button class="copy-button" id="copy-button" type="button" hidden>انسخي لينك الرسالة ♡</button>
+        <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const openButton = document.querySelector("#open-button");
+    const coverCard = document.querySelector("#cover-card");
+    const loveCard = document.querySelector("#love-card");
+    const surpriseButton = document.querySelector("#surprise-button");
+    const surpriseMessage = document.querySelector("#surprise-message");
+    const shareHelp = document.querySelector("#share-help");
+    const qrCode = document.querySelector("#qr-code");
+    const shareLink = document.querySelector("#share-link");
+    const copyButton = document.querySelector("#copy-button");
+    const shareStatus = document.querySelector("#share-status");
+    let surpriseIndex = 0;
+
+    openButton.addEventListener("click", () => {
+      coverCard.hidden = true;
+      loveCard.hidden = false;
+      document.title = "بحبك يا وتين، يا توتي ♡";
+      surpriseButton.focus();
+      prepareShareLink();
+      makeHearts();
+    });
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(shareLink.value);
+        shareStatus.textContent = "اتنسخ اللينك! ابعتيه لتوتي أو افتحيه على موبايلك ♡";
+      } catch {
+        shareLink.focus();
+        shareLink.select();
+        shareStatus.textContent = "حددي اللينك وانسخيه، وبعدها ابعتيه لتوتي ♡";
+      }
+    });
+
+    surpriseButton.addEventListener("click", () => {
+      const notes = [
+        "يا توتي، لو رجع بيا الزمن هختارك إنتِ في كل مرة… ومن غير تفكير. ♡",
+        "ضحكتك مكاني المفضل، وصوتك أحلى حاجة ممكن أسمعها في يومي. ♥",
+        "كل ذكرى لينا بحبها، وكل ذكرى جاية متحمس أعيشها معاكي. بحبك يا وتين! ♡",
+        "تذكير صغير: في حد بيحبك أوي وفخور إنك حبيبته… وأنا الحد ده. ✨"
+      ];
+      surpriseMessage.textContent = notes[surpriseIndex % notes.length];
+      surpriseIndex += 1;
+      makeHearts();
+    });
+
+    function prepareShareLink() {
+      if (window.location.protocol !== "http:" && window.location.protocol !== "https:") {
+        shareHelp.textContent = "الصفحة لسه ملف على الجهاز. ارفعي index.html على استضافة مجانية عشان يبقى ليها لينك وQR شغالين على موبايل توتي.";
+        return;
+      }
+
+      const pageUrl = window.location.href;
+      shareLink.value = pageUrl;
+      shareLink.hidden = false;
+      copyButton.hidden = false;
+      qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(pageUrl)}`;
+      qrCode.hidden = false;
+      shareHelp.textContent = "امسحي الكود أو انسخي اللينك وافتحيه على موبايلك. تقدري كمان تبعتيه لتوتي ♡";
+      qrCode.addEventListener("error", () => {
+        shareStatus.textContent = "ماقدرناش نحمّل صورة الـQR؛ اللينك لسه جاهز للنسخ.";
+        qrCode.hidden = true;
+      }, { once: true });
+    }
+
+    function makeHearts() {
+      for (let index = 0; index < 12; index += 1) {
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.setAttribute("aria-hidden", "true");
+        heart.textContent = Math.random() > 0.5 ? "♡" : "♥";
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.animationDelay = `${Math.random() * 1.8}s`;
+        heart.style.fontSize = `${14 + Math.random() * 20}px`;
+        document.body.append(heart);
+        window.setTimeout(() => heart.remove(), 7000);
+      }
+    }
+  </script>
+</body>
+</html>
