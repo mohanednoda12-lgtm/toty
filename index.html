@@ -188,44 +188,6 @@
       color: #b1788b;
       font-size: 14px;
     }
-    .share-box {
-      margin: 30px auto 0;
-      padding: 20px;
-      border: 1px solid #f1dfe5;
-      border-radius: 20px;
-      background: rgba(255, 250, 251, .85);
-    }
-    .share-box h2 { margin: 0; font-size: 20px; }
-    .share-box p { color: var(--muted); line-height: 1.8; }
-    .qr-code {
-      display: block;
-      width: 190px;
-      height: 190px;
-      margin: 15px auto;
-      padding: 8px;
-      border: 1px solid #f1dfe5;
-      border-radius: 12px;
-      background: white;
-    }
-    .share-link {
-      display: block;
-      width: 100%;
-      margin: 12px 0;
-      padding: 10px;
-      border: 1px solid #ead8df;
-      border-radius: 10px;
-      color: var(--ink);
-      background: white;
-      direction: ltr;
-      text-align: left;
-    }
-    .share-status {
-      min-height: 24px;
-      margin: 8px 0 0 !important;
-      color: var(--deep-pink) !important;
-      font-size: 14px;
-    }
-
     [hidden] { display: none !important; }
 
     .heart {
@@ -298,14 +260,6 @@
       <button class="surprise-button" id="surprise-button" type="button">اضغطي هنا لمفاجأة صغيرة ✨</button>
       <p class="surprise" id="surprise-message" aria-live="polite"></p>
       <p class="signature">من قلبي لقلبك يا توتي… بحبك أوي ♡</p>
-      <section class="share-box" aria-labelledby="share-title">
-        <h2 id="share-title">خلي الرسالة توصلك في أي وقت ♡</h2>
-        <p id="share-help">لما ترفعي الصفحة على الإنترنت، هيظهر هنا QR والرابط عشان تبعتيهم لتوتي.</p>
-        <img class="qr-code" id="qr-code" alt="QR code لفتح رسالة وتين" hidden>
-        <input class="share-link" id="share-link" type="text" aria-label="رابط الرسالة" readonly hidden>
-        <button class="copy-button" id="copy-button" type="button" hidden>انسخي لينك الرسالة ♡</button>
-        <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
-      </section>
     </section>
   </main>
 
@@ -315,11 +269,6 @@
     const loveCard = document.querySelector("#love-card");
     const surpriseButton = document.querySelector("#surprise-button");
     const surpriseMessage = document.querySelector("#surprise-message");
-    const shareHelp = document.querySelector("#share-help");
-    const qrCode = document.querySelector("#qr-code");
-    const shareLink = document.querySelector("#share-link");
-    const copyButton = document.querySelector("#copy-button");
-    const shareStatus = document.querySelector("#share-status");
     let surpriseIndex = 0;
 
     openButton.addEventListener("click", () => {
@@ -327,19 +276,7 @@
       loveCard.hidden = false;
       document.title = "بحبك يا وتين، يا توتي ♡";
       surpriseButton.focus();
-      prepareShareLink();
       makeHearts();
-    });
-
-    copyButton.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(shareLink.value);
-        shareStatus.textContent = "اتنسخ اللينك! ابعتيه لتوتي أو افتحيه على موبايلك ♡";
-      } catch {
-        shareLink.focus();
-        shareLink.select();
-        shareStatus.textContent = "حددي اللينك وانسخيه، وبعدها ابعتيه لتوتي ♡";
-      }
     });
 
     surpriseButton.addEventListener("click", () => {
@@ -353,25 +290,6 @@
       surpriseIndex += 1;
       makeHearts();
     });
-
-    function prepareShareLink() {
-      if (window.location.protocol !== "http:" && window.location.protocol !== "https:") {
-        shareHelp.textContent = "الصفحة لسه ملف على الجهاز. ارفعي index.html على استضافة مجانية عشان يبقى ليها لينك وQR شغالين على موبايل توتي.";
-        return;
-      }
-
-      const pageUrl = window.location.href;
-      shareLink.value = pageUrl;
-      shareLink.hidden = false;
-      copyButton.hidden = false;
-      qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(pageUrl)}`;
-      qrCode.hidden = false;
-      shareHelp.textContent = "امسحي الكود أو انسخي اللينك وافتحيه على موبايلك. تقدري كمان تبعتيه لتوتي ♡";
-      qrCode.addEventListener("error", () => {
-        shareStatus.textContent = "ماقدرناش نحمّل صورة الـQR؛ اللينك لسه جاهز للنسخ.";
-        qrCode.hidden = true;
-      }, { once: true });
-    }
 
     function makeHearts() {
       for (let index = 0; index < 12; index += 1) {
